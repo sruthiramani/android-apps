@@ -1,0 +1,16 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:layout_gravity="center|center_vertical|center_horizontal"
+    tools:context="${relativePackage}.${activityClass}" >
+<LinearLayout
+    android:id="@+id/trainDisp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     >
+     </LinearLayout>
+  
+
+</ScrollView>
