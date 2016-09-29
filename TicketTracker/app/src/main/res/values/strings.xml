@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TicketTracker</string>
+    <string name="title_activity_ticket_tracker">Ticket Tracker</string>
+    <string name="hello_world">Hello world!</string>
+     <string name="enter_ticket_info">Copy &amp; Paste SMS</string>
+    <string name="extract_ticket_info">Extract Ticket Information</string>
+    <string name="disp_ticket_info">View Ticket Information</string>
+    <string name="title_activity_train_journeys">Train Journeys</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="last_updated_date" />
+    <string name="title_activity_plan_your_travel">Plan Your Travel</string>
+    <string name="view_plan">View Ticket Booking Dates</string>
+     <string name="update_plan">Update</string>
+     <string name="add_tkt">Add</string>
+     <string name= "add_sms">Copy and Paste the IRCTC SMS here.</string>
+     <string name="editHint">Add comma separated travel dates(YYYY-MM-DD) and click update.</string>
+
+</resources>
