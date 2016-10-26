@@ -1,6 +1,7 @@
 package app.android.com.nudger;
 
 import android.app.AlarmManager;
+import android.app.DialogFragment;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -151,6 +153,7 @@ public class Base extends AppCompatActivity {
         int status = mRemDB.updateReminderEntryAsDone(rowItem);
         AlarmCreator alarmCreator = new AlarmCreator(context);
         alarmCreator.cancelAlarm(rowItem.getAlarmId());
+        rowItem.setType(COMPLETED_REMINDERS);
         Log.d("Update", ""+rowItem.getId() );
 
     }
@@ -177,6 +180,31 @@ public class Base extends AppCompatActivity {
         super.onStop();
 
 
+    }
+
+    public static void deleteReminderEntry(ReminderEntry rowItem) {
+        int type = rowItem.getType();
+        Log.d("App", " "+type);
+        switch(type) {
+            case COMPLETED_REMINDERS:
+
+                PlaceholderFragment.completedListAdapter.remove(rowItem);
+                PlaceholderFragment.completedListAdapter.notifyDataSetChanged();
+                break;
+            case UPCOMING_REMINDERS:
+                PlaceholderFragment.upcomingListAdapter.remove(rowItem);
+                PlaceholderFragment.upcomingListAdapter.notifyDataSetChanged();
+                break;
+            case  PENDING_REMINDERS:
+                PlaceholderFragment.pendingListAdapter.remove(rowItem);
+                PlaceholderFragment.pendingListAdapter.notifyDataSetChanged();
+                break;
+        }
+
+        int status = mRemDB.deleteReminderEntry(rowItem);
+        AlarmCreator alarmCreator = new AlarmCreator(context);
+        alarmCreator.cancelAlarm(rowItem.getAlarmId());
+        Log.d("Delete", ""+rowItem.getId() );
     }
 
     /**
@@ -273,6 +301,7 @@ public class Base extends AppCompatActivity {
             /* set up */
             if (initUpcoming == false) {
                 mUpcomingList = (ListView) rootView.findViewById(R.id.list);
+
                 upcoming_reminders = new ArrayList<ReminderEntry>();
                 upcomingListAdapter = new CustomListAdapter(getContext(), R.layout.reminder_entry, upcoming_reminders, UPCOMING_REMINDERS);
                 ArrayList<ReminderEntry> entries = Base.mRemDB.getReminderEntries(Base.UPCOMING_REMINDERS);
@@ -306,7 +335,7 @@ public class Base extends AppCompatActivity {
             long id = Base.mRemDB.insertReminderEntry(title, desc, priority, ReminderEntry.NOT_DONE, assigner, dateInMilliSec, alarmId);
             Log.d(APP_TAG, "ReminderEntry ID:" + id);
 
-            ReminderEntry reminder = new ReminderEntry(id, title, desc, ReminderEntry.NOT_DONE, priority, assigner, dateInMilliSec, alarmId);
+            ReminderEntry reminder = new ReminderEntry(id, title, desc, ReminderEntry.NOT_DONE, priority, assigner, dateInMilliSec, alarmId, UPCOMING_REMINDERS);
 
             if (assigner.equalsIgnoreCase("Self")) {
                 viewPager.setCurrentItem(0);
@@ -317,6 +346,7 @@ public class Base extends AppCompatActivity {
                 viewPager.setCurrentItem(2);
                 pending_reminders.add(reminder);
                 pendingListAdapter.notifyDataSetChanged();
+                reminder.setType(PENDING_REMINDERS);
             }
         }
 

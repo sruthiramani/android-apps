@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="app.android.com.nudger.Base">
+    tools:context="app.android.com.nudger.Base"
+    android:foregroundTint="@android:color/black"
+    android:background="#f8a9d2">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -19,9 +21,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="#4A235A"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:background="#4A235A">
+            app:popupTheme="@style/AppTheme.PopupOverlay">
 
         </android.support.v7.widget.Toolbar>
 
@@ -29,7 +31,6 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="false"
             android:background="#633974" />
 
     </android.support.design.widget.AppBarLayout>

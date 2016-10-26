@@ -18,6 +18,16 @@ public class ReminderEntry {
     private long reminderDueDateInMilliSec;
     private int alarmId;
 
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    private int type;
+
     ReminderEntry(long id,
                   String title,
                   String description,
@@ -25,7 +35,8 @@ public class ReminderEntry {
                   int reminderPriority,
                   String reminderAssigner,
                   long reminderDueDateInMilliSec,
-                  int alarmId) {
+                  int alarmId,
+                  int type) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -34,8 +45,7 @@ public class ReminderEntry {
         this.reminderAssigner = reminderAssigner;
         this.reminderDueDateInMilliSec = reminderDueDateInMilliSec;
         this.alarmId = alarmId;
-
-
+        this.type = type;
     }
 
     public String getTitle() {

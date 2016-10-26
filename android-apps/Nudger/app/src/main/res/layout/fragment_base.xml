@@ -15,8 +15,11 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
+        android:divider="@color/divider_color_dark"
         android:layout_weight="1"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:dividerHeight="1dp"
+        android:contextClickable="false" />
 
 </LinearLayout>
 

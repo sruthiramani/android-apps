@@ -94,11 +94,19 @@ public class ReminderDBStore extends  SQLiteOpenHelper{
         int st = Integer.parseInt(res.getString(res.getColumnIndex(COLUMN_STATUS)));
         int alarmId = Integer.parseInt(res.getString(res.getColumnIndex(COLUMN_ALARM_ID)));
         Log.d(Base.APP_TAG,"ID:DBtitle"+ id+":"+title);
+        int type = Base.UPCOMING_REMINDERS;
         boolean status = false;
-        if(st == 1) status = true;
+        if(st == 1) {
+            status = true;
+            type = Base.COMPLETED_REMINDERS;
+        }
         String assigner = res.getString(res.getColumnIndex(COLUMN_ASSIGNER));
         long dateInMS = Long.parseLong(res.getString(res.getColumnIndex(COLUMN_DUE_DATE_IN_MS)));
-        return new ReminderEntry(id,title,desc,status,priority,assigner,dateInMS,alarmId);
+        if(!assigner.equals("Self")) {
+            type = Base.PENDING_REMINDERS;
+        }
+
+        return new ReminderEntry(id,title,desc,status,priority,assigner,dateInMS,alarmId, type);
     }
 
     public int updateReminderEntryAsDone(ReminderEntry rowItem) {
@@ -117,6 +125,15 @@ public class ReminderDBStore extends  SQLiteOpenHelper{
         Log.d(Base.APP_TAG,"AlarmID" +alarmId);
         res.moveToFirst();
         return getReminderEntryFromCursor(res);
+
+    }
+
+    public int deleteReminderEntry(ReminderEntry rowItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        long id = rowItem.getId();
+        Log.d(Base.APP_TAG,"Row ID:"+ id);
+        return db.delete(TABLE_NAME,COLUMN_ID + " ="+id,null);
 
     }
 }

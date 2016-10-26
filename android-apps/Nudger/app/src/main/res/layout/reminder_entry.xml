@@ -3,95 +3,92 @@
     android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/titleView"
-        android:layout_width="match_parent"
+    android:orientation="vertical"
+   >
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:textAppearance="?android:attr/textAppearanceLarge">
-     </TextView>
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:typeface="sans"
+            android:textColor="@color/divider_color_dark">
+        </TextView>
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/descriptionView"
-        android:layout_below="@+id/titleView"
-        />
+        android:typeface="serif"
+        android:textColor="@color/divider_color_dark" />
 
-    <TextView
-        android:id="@+id/StatusLabel"
+
+
+</LinearLayout>
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/statusCheckBox"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="17dp"
-        android:text="@string/done_string" >
-    </TextView>
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/dateView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textStyle="italic"
+            android:typeface="monospace"
+            android:textColor="@color/assign_color">
+
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>
 
     <CheckBox
         android:id="@+id/statusCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="52dp"
-        android:layout_toRightOf="@+id/StatusLabel" >
+        android:layout_alignParentEnd="true">
     </CheckBox>
 
-    <TextView
-        android:id="@+id/PriorityLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/priority_string"
-        android:layout_below="@+id/AssignLabel"
-        android:layout_alignParentStart="true">
-    </TextView>
-A
-    <TextView
-        android:id="@+id/priorityView"
-        android:layout_width="50dip"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/PriorityLabel"
-        android:layout_toEndOf="@+id/PriorityLabel">
-    </TextView>
-
-    <TextView
-        android:id="@+id/DateLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/statusCheckBox"
-        android:text="@string/date_string" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/dateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/DateLabel"
-        android:layout_toRightOf="@+id/DateLabel" >
-    </TextView>
-
-    <TextView
-        android:id="@+id/AssignLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/assign_string"
-        android:layout_below="@+id/DateLabel"
-        android:layout_alignParentStart="true">
-    </TextView>
 
     <TextView
         android:id="@+id/assignView"
-        android:layout_width="50dip"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/AssignLabel"
-        android:layout_toEndOf="@+id/AssignLabel">
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/statusCheckBox"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/assign_color"
+        android:typeface="monospace">
     </TextView>
 
-
+    <TextView
+        android:id="@+id/priorityView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/assignView"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="viewEnd"
+        android:typeface="monospace"
+        android:textStyle="bold">
+    </TextView>
 </RelativeLayout>
